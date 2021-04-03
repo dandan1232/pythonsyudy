@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>多重柱状图</title>
+    <!--    引入echarts-->
+    <script src="../js/echarts.common.js"></script>
+</head>
+<body>
+<!--为echarts准备个div-->
+<div id="main" style="height: 700px;width: 800px"></div>
+<div></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var option = {
+        color: 'blue',
+
+        title: {
+            text: '不同价格区间房源数量统计',
+            subtext:'我瞎说的',
+            // x:'center',
+            textStyle: {
+                color: 'red',
+                fontSize: 21.6,
+                fontFamily: 'STKAITI',
+            },
+        },
+
+        legend: {
+            data: ['城市']
+        },
+
+        xAxis: {
+            // type:"category",
+            name: "价格区间",
+            data: ['1000元以下(含1000元)', '2000-3000元(含2000元)', '3000元以上（含3000元）'],
+            axisLine: {
+                show: true,
+                symbol: ['none', 'arrow'],
+                symbolSize: [8, 8]
+            },
+            axisLabel: {
+                interval: 0,
+                rotate: 60
+            },
+
+        },
+        yAxis: {
+            name: "房源数量",
+            axisLine: {
+                show: true,
+                symbol: ['none', 'arrow'],
+                symbolSize: [8, 8]
+            },
+            lineStyle: {
+                color: 'blue',
+                width: 2,
+                type: "solid",
+            }
+        },
+
+        tooltip: {
+            tigger: 'item'
+        },
+
+        grid: {
+            bottom: 150
+        },
+        series: [{
+            name: "城市",
+            type: 'bar',
+            data: [10, 20, 30],
+            // showBackground: true,
+            // backgroundStyle: {
+            //     color: 'rgba(180, 180, 180, 0.2)'
+            // }
+        }],
+
+        toolbox: {
+            show: true,
+            feature: {
+                mask: {show: true},
+                dataView: {show: true, readOnly: false},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        }
+
+
+    };
+    // myChart.setOption(option);
+    option && myChart.setOption(option);
+</script>
+</body>
+</html>

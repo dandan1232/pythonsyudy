@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>折线图</title>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+<div id="main" style="height: 600px;width: 800px"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById("main"));
+
+    var option = {
+        color: 'blue',
+
+
+        title: {
+            text: '南京市2019-2020年房源数量变化趋势图',
+            textStyle: {
+                color: 'red',
+                fontsize: 21.6,
+                fontFamily: 'STKAITI'
+            }
+        },
+
+        tooltip: {},
+        legend: {
+            data: ['出售量']
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap:false,
+            name: '月份',
+            data: ['一月', '二月', '三月', '四月', '五月', '六月'],
+            axisLine: {
+                show: true,
+                symbol: ["none", "arrow"],
+                symbolSize: [6, 6]
+            }
+        },
+        yAxis: {
+            type: 'value',
+            name: '房源数量',
+
+            axisLine: {
+                show: true,
+                symbol: ["none", "arrow"],
+                symbolSize: [6, 6]
+            }
+
+        },
+        series: [{
+            name: '出售量',
+            type: 'line',
+            data: ['34', '24', '63', '29', '20', '98'],
+            smooth:true,
+            areaStyle:{}
+        }],
+
+
+        toolbox: {
+            show: true,
+            feature: {
+                mask: {show: true},
+                dataView: {show: true, readOnly: false},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+
+    };
+
+    option && myChart.setOption(option);
+
+</script>
+</body>
+</html>

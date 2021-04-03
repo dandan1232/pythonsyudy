@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>通过ajax获取json数据</title>
+	</head>
+	<!-- 导入echarts和jquery包 -->
+	<script src="../js/echarts.common.js"></script>
+	<script src="../js/jquery.min.js"></script>
+	<body>
+		<div id="main" style="width: 600px;height:400px;"></div>
+		
+		<script type="text/javascript">
+		// 创建x轴数据和y轴数据
+			var data = {
+				xvalue: [],
+				yvalue: [],
+			};
+			//发送ajax请求从后台获取数据
+			// 在DOM加载完成后自动执行
+			$(document).ready(function(){
+				//获取数据
+				getData();
+				//打印数据看是否的到
+				console.log(data.xvalue);
+				console.log(data.yvalue);
+			});
+			
+			// 获取数据的方法
+			function getData(){
+				//发送ajax请求,参数为json数据
+				$.ajax({
+					url: 'http:/',
+					data: {},					//发送到服务器端的数据
+					type: 'POST',
+					// 默认值: true。默认设置下，所有请求均为异步请求。如果需要发送同步请求，请将此选项设置为 false。
+					// 注意，同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行
+					async: false,
+					dataType: 'json',					// 预期服务器返回的数据类型。
+					// 回调函数。当请求之后调用。传入返回后的数据，以及包含成功代码的字符串。
+					success: function(data){
+						alert(data.names[0]);
+						app.xvalue = data.names;
+						app.yvalue = data.prices;
+					},
+				});
+			}
+		</script>
+		
+	</body>
+</html>
+
+
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="../js/echarts.common.js"></script>
+		<title>折线图</title>
+	</head>
+	<body>
+		<!-- 为ecahrts准备一个容器 -->
+		<div style="height: 400px;margin: -.5em auto;" id="container" ></div>
+		
+		<script type="text/javascript">
+			// 基于准备好的DOM，初始化ECharts实例
+			var myChart = echarts.init(document.getElementById('container'));
+			var option = {
+				title: {
+					text: 'llll'
+				},
+				//tooltip: {
+					//trigger: 'axis'
+				//},
+				xAxis: {
+					name: '时间',
+					type: 'category',
+					data: ['周一','周二','周三','周四','周五','周六','周日'],
+					splitLine: {
+						//设置X轴的网格
+						show: false,
+					},
+					splitArea: {
+						show: false,
+						areaStyle: {
+							color: ['black']
+						}
+					},
+					axisLine: {
+						//设置X轴颜色
+						lineStyle: {
+							color: 'black'
+						}
+					}		
+				},
+					
+					
+					
+				yAxis: {
+					name: '收益/美元',
+					type: 'value',
+					splitLine: {
+						//设置X轴网格
+						show: true,
+						lineStyle: {
+							color: 'black'
+						}
+					},
+					axisLine: {
+						// 设置Y轴的颜色
+						lineStyle: {
+							color: "black"
+						}
+							
+					}
+				},
+
+
+
+				series: [{
+					name: '总收益',
+					type: 'line',
+					stack: '',
+					smooth: true, //点与点之间的幅度，false为直线
+					data: [120,132,101,134,90,230,210],
+					itemStyle: {
+						normal: {
+							areaStyle: {
+								color: '#47BBF6'
+							},
+							lineStyle: {
+								color: '#47BBF6'
+							},
+							borderColor: {
+								color: '#47BBF6'
+							}
+						},
+						emphasis: {
+							color: '#47BBF6',
+							borderColor: {
+								color: '#47BBF6'
+							}
+						}
+					}
+				}]				
+					
+			};
+			
+			myChart.setOption(option);
+			
+		</script>
+	</body>
+</html>

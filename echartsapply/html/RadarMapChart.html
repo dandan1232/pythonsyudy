@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>雷达图</title>
+    <script src="../js/echarts.common.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+<div id="main" style="width: 700px;height: 700px"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById("main"));
+
+    var option = {
+        title: {
+            text: '四地平均租金',
+            textStyle: {
+                fontsize: 21.6,
+                fontFamily: "STKAITI",
+                color: 'red'
+            }
+        },
+        tooltip: {},
+        legend: {
+            data: ['平均租金', '实际租金'],
+        },
+        radar: {
+            name: {
+                textStyle: {
+                    color: 'red',
+                    backgroundColor: 'grey',
+                    borderRadius: 6,
+                    padding: [3, 5]
+                }
+            },
+            indicator: [
+                {name: '南京', max: 2000},
+                {name: '苏州', max: 1620},
+                {name: '无锡', max: 3820},
+                {name: '南通', max: 370},
+            ]
+        },
+
+        series: [{
+            type: 'radar',
+            name: '平均 vs 实际',
+            data: [
+                {
+                    value: [1000, 1500, 2500, 300],
+                    name: '平均租金'
+                },
+                {
+                    value: [1500, 1600, 3500, 250],
+                    name: '实际租金'
+                }
+            ]
+        }],
+
+        //保存下来
+        toolbox: {
+					show: true,
+					feature: {
+						mark: {show: true},
+						dataView: {show: true, readOnly: false},
+						restore: {show: true},
+						saveAsImage: {show: true}
+					}
+				},
+    };
+    option && myChart.setOption(option);
+
+</script>
+</body>
+</html>

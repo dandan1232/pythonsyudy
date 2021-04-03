@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MyEcharts</title>
+</head>
+<!--  导入echarts和jquery包  -->
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+<script src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+
+<body>
+
+    <!--  准备个div  -->
+    <div id="main" style="width: 600px;height: 400px;"></div>
+
+
+    <script type="text/javascript">
+        // <!--1.创建变量接收ajax数据            -->
+        var app = {
+            xvalues: [],
+            yvalues: [],
+        };
+
+
+        // < !--2.在DOM执行完毕以后自动加载ajax请求-- >
+        $(document).ready(function () {
+            getData();
+            console.log(app.xvalues);
+            console.log(app.yvalues);
+            // < !--绘制ecahrts表格     -->
+            var myChart = echarts.init(document.getElementById('main'));
+            // <!-- // 指定图表的配置项和数据 -->
+            var option = {
+                title: {
+                    text: '第一个 ECharts 实例'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    data: []
+                },
+                xAxis: {
+                    data: app.xvalues
+                },
+                yAxis: {},
+                series: [{
+                    name: '价格',
+                    type: 'bar',
+                    data: app.yvalues
+                }]
+            };
+            // <!-- // 使用刚指定的配置项和数据显示图表。 -->
+            myChart.setOption(option);
+        });
+
+
+        // < !--3.构建ajax请求，获取后台数据-- >
+        function getData() {
+            $.ajax({
+                //1.服务端路由
+                url: '/data',
+                //2.发送到服务端的数据
+                data: {},
+                //3.访问类型
+                type: 'POST',
+                //4.
+                async: false,
+                //5.预期返回的数据类型
+                dataType: 'json',
+                //6.回调函数
+                success: function (data) {
+                    alert(data.names[0]);
+                    app.xvalues = data.names;
+                    app.yvalues = data.prices;
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>
