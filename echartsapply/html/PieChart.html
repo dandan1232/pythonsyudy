@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>饼图</title>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/echarts.common.js"></script>
+    <script src="../js/jquery.min.js"></script>
+</head>
+<body>
+<div id="main" style="width: 400px;height: 600px"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById("main"));
+    var option = {
+        title: {
+            text: '小明的爱好',
+            subtext: '猜的',
+            left: 'center',
+            textStyle: {
+                color: '#00bcd4',
+                fontFamily: 'STHeiti',
+                fontsize: 12
+            },
+        },
+        tooltip: {
+            trigger: 'item',
+        },
+        legend: {
+            orient:'vertical',
+            left: 'left',
+        },
+
+
+        series: [{
+            name: '特性',
+            type: 'pie',
+            radius:'80%',
+            data: [
+                {value:32,name: '吃'},
+                {value:65,name: '睡觉'},
+                {value:98,name: '听歌'},
+                {value:200,name: '唱歌'},
+                {value:130,name: '打代码'},
+            ],
+            emphasis:{
+                itemStyle:{
+                    shadowBlur:10,
+                    shadowOffsetX:0,
+                    shadowColor:'blue',
+                }
+            }
+        }]
+    };
+
+    option && myChart.setOption(option);
+</script>
+
+</body>
